@@ -1,0 +1,44 @@
+@model Store.Web.Models.Product
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container">
+    <h1 class="mb-4">@Model.Name</h1>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" class="img-fluid rounded shadow" alt="@Model.Name">
+            }
+            else
+            {
+                <div class="bg-secondary d-flex align-items-center justify-content-center rounded shadow" style="height: 400px;">
+                    <span class="text-white fs-4">No Image Available</span>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-primary mb-3">$@Model.Price.ToString("F2")</h2>
+            
+            <h4>Description</h4>
+            <p class="text-muted">@(Model.Description ?? "No description available.")</p>
+
+            <div class="mt-4">
+                <a href="@Url.Action("Index", "Products")" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Back to Products
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
