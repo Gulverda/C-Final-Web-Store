@@ -69,6 +69,87 @@ app.MapGet("/api/products/{id:int}", async (int id, StoreDbContext db) =>
 .Produces<Product>(StatusCodes.Status200OK)
 .Produces(StatusCodes.Status404NotFound);
 
+app.MapPost("/api/products", async (CreateProductDto dto, StoreDbContext db) =>
+{
+    try
+    {
+        var product = new Product
+        {
+            Name = dto.Name,
+            Price = dto.Price,
+            Description = dto.Description,
+            ImageUrl = dto.ImageUrl
+        };
+
+        db.Products.Add(product);
+        await db.SaveChangesAsync();
+
+        return Results.Created($"/api/products/{product.Id}", product);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
+})
+.WithName("CreateProduct")
+.Produces<Product>(StatusCodes.Status201Created)
+.Produces(StatusCodes.Status400BadRequest);
+
+app.MapPut("/api/products/{id:int}", async (int id, UpdateProductDto dto, StoreDbContext db) =>
+{
+    try
+    {
+        var product = await db.Products.FindAsync(id);
+        
+        if (product == null)
+        {
+            return Results.NotFound(new { message = $"Product with ID {id} not found." });
+        }
+
+        product.Name = dto.Name;
+        product.Price = dto.Price;
+        product.Description = dto.Description;
+        product.ImageUrl = dto.ImageUrl;
+
+        await db.SaveChangesAsync();
+
+        return Results.Ok(product);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
+})
+.WithName("UpdateProduct")
+.Produces<Product>(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status404NotFound)
+.Produces(StatusCodes.Status400BadRequest);
+
+app.MapDelete("/api/products/{id:int}", async (int id, StoreDbContext db) =>
+{
+    try
+    {
+        var product = await db.Products.FindAsync(id);
+        
+        if (product == null)
+        {
+            return Results.NotFound(new { message = $"Product with ID {id} not found." });
+        }
+
+        db.Products.Remove(product);
+        await db.SaveChangesAsync();
+
+        return Results.Ok(new { message = $"Product with ID {id} deleted successfully." });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
+})
+.WithName("DeleteProduct")
+.Produces(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status404NotFound);
+
 // Cart API Endpoints
 app.MapGet("/api/cart", async (string sessionId, ICartService cartService) =>
 {
