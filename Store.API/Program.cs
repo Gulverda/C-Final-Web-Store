@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container
 builder.Services.AddDbContext<StoreDbContext>(options =>
-    options.UseSqlite("Data Source=Store.db"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<ICartService, CartService>();
 
@@ -26,7 +26,7 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Ensure database is created
+// Ensure database is created and migrations are applied
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<StoreDbContext>();
