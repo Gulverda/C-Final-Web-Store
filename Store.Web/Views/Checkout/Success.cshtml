@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card text-center">
+                <div class="card-body py-5">
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle text-success" style="font-size: 5rem;"></i>
+                    </div>
+                    
+                    @if (TempData["Success"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">@TempData["Success"]</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2 class="text-success mb-3">Order Placed Successfully!</h2>
+                        <p class="lead">Thank you for your purchase!</p>
+                    }
+
+                    @if (ViewBag.OrderId != null)
+                    {
+                        <p class="mb-4">
+                            <strong>Order Number: #@ViewBag.OrderId</strong>
+                        </p>
+                    }
+
+                    <p class="text-muted mb-4">
+                        Your order has been received and will be processed shortly. You will receive a confirmation email shortly.
+                    </p>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a asp-controller="Products" asp-action="Index" class="btn btn-primary">
+                            Continue Shopping
+                        </a>
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

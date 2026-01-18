@@ -1,0 +1,96 @@
+@model Store.Web.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container">
+    <h1 class="mb-4">Checkout</h1>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Customer Information</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Index" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="CustomerName" class="form-label"></label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label"></label>
+                            <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="form-label"></label>
+                            <input asp-for="Phone" class="form-control" />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-controller="Cart" asp-action="Index" class="btn btn-secondary">Back to Cart</a>
+                            <button type="submit" class="btn btn-primary">Place Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.Cart != null && Model.Cart.Items.Any())
+                    {
+                        <ul class="list-unstyled mb-3">
+                            @foreach (var item in Model.Cart.Items)
+                            {
+                                <li class="d-flex justify-content-between mb-2">
+                                    <span>@item.ProductName x @item.Quantity</span>
+                                    <span>$@item.TotalPrice.ToString("F2")</span>
+                                </li>
+                            }
+                        </ul>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-2">
+                            <strong>Total Items:</strong>
+                            <strong>@Model.Cart.TotalItems</strong>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <strong class="fs-5">Grand Total:</strong>
+                            <strong class="fs-4 text-primary">$@Model.Cart.GrandTotal.ToString("F2")</strong>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No items in cart.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

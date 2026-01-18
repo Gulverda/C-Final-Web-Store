@@ -150,4 +150,71 @@ app.MapDelete("/api/cart/items/{productId:int}", async (string sessionId, int pr
 .Produces(StatusCodes.Status200OK)
 .Produces(StatusCodes.Status404NotFound);
 
+// Orders API Endpoints
+app.MapPost("/api/orders", async (CreateOrderDto dto, StoreDbContext db, ICartService cartService) =>
+{
+    try
+    {
+        // Get cart items
+        var cart = await cartService.GetCartAsync(dto.SessionId);
+        
+        if (cart.Items == null || !cart.Items.Any())
+        {
+            return Results.BadRequest(new { message = "Cannot create order with empty cart." });
+        }
+
+        // Create order
+        var order = new Order
+        {
+            CustomerName = dto.CustomerName,
+            Address = dto.Address,
+            Phone = dto.Phone,
+            OrderDate = DateTime.UtcNow,
+            TotalAmount = cart.GrandTotal,
+            OrderItems = cart.Items.Select(item => new OrderItem
+            {
+                ProductId = item.ProductId,
+                ProductName = item.ProductName,
+                Price = item.Price,
+                Quantity = item.Quantity,
+                TotalPrice = item.TotalPrice
+            }).ToList()
+        };
+
+        db.Orders.Add(order);
+        await db.SaveChangesAsync();
+
+        // Clear cart after order creation
+        await cartService.ClearCartAsync(dto.SessionId);
+
+        // Return order response
+        var orderResponse = new OrderResponseDto
+        {
+            Id = order.Id,
+            CustomerName = order.CustomerName,
+            Address = order.Address,
+            Phone = order.Phone,
+            OrderDate = order.OrderDate,
+            TotalAmount = order.TotalAmount,
+            OrderItems = order.OrderItems.Select(oi => new OrderItemResponseDto
+            {
+                ProductId = oi.ProductId,
+                ProductName = oi.ProductName,
+                Price = oi.Price,
+                Quantity = oi.Quantity,
+                TotalPrice = oi.TotalPrice
+            }).ToList()
+        };
+
+        return Results.Ok(orderResponse);
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
+})
+.WithName("CreateOrder")
+.Produces<OrderResponseDto>(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status400BadRequest);
+
 app.Run();

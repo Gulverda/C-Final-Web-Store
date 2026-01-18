@@ -11,6 +11,8 @@ public class StoreDbContext : DbContext
     }
 
     public DbSet<Product> Products { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderItem> OrderItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,5 +61,12 @@ public class StoreDbContext : DbContext
                 ImageUrl = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
             }
         );
+
+        // Configure Order-OrderItem relationship
+        modelBuilder.Entity<OrderItem>()
+            .HasOne(oi => oi.Order)
+            .WithMany(o => o.OrderItems)
+            .HasForeignKey(oi => oi.OrderId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
