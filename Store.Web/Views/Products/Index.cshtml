@@ -44,9 +44,18 @@
                             <p class="mt-auto mb-2">
                                 <strong class="text-primary fs-4">$@product.Price.ToString("F2")</strong>
                             </p>
-                            <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-primary">
-                                View Details
-                            </a>
+                            <div class="d-grid gap-2">
+                                <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-primary">
+                                    View Details
+                                </a>
+                                <form asp-controller="Cart" asp-action="AddItem" method="post" class="d-inline">
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <input type="hidden" name="quantity" value="1" />
+                                    <button type="submit" class="btn btn-success w-100">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

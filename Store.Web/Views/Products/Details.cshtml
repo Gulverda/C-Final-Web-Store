@@ -34,7 +34,14 @@
             <h4>Description</h4>
             <p class="text-muted">@(Model.Description ?? "No description available.")</p>
 
-            <div class="mt-4">
+            <div class="mt-4 d-grid gap-2">
+                <form asp-controller="Cart" asp-action="AddItem" method="post" class="d-inline">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <input type="hidden" name="quantity" value="1" />
+                    <button type="submit" class="btn btn-success btn-lg w-100">
+                        Add to Cart
+                    </button>
+                </form>
                 <a href="@Url.Action("Index", "Products")" class="btn btn-secondary">
                     <i class="bi bi-arrow-left"></i> Back to Products
                 </a>

@@ -95,3 +95,4 @@ C:\Users\Gulverda\Desktop\Final C#\Store.Web\obj\Debug\net9.0\refint\Store.Web.d
 C:\Users\Gulverda\Desktop\Final C#\Store.Web\obj\Debug\net9.0\Store.Web.pdb
 C:\Users\Gulverda\Desktop\Final C#\Store.Web\obj\Debug\net9.0\Store.Web.genruntimeconfig.cache
 C:\Users\Gulverda\Desktop\Final C#\Store.Web\obj\Debug\net9.0\ref\Store.Web.dll
+C:\Users\Gulverda\Desktop\Final C#\Store.Web\obj\Debug\net9.0\Store.Web.sourcelink.json

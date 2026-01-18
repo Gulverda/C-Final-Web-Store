@@ -178,3 +178,4 @@ C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\refint\Store.API.d
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.pdb
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.genruntimeconfig.cache
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\ref\Store.API.dll
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.sourcelink.json
