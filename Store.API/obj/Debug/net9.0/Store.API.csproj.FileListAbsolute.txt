@@ -1,3 +1,11 @@
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.csproj.AssemblyReference.cache
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.AssemblyInfoInputs.cache
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.AssemblyInfo.cs
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.csproj.CoreCompileInputs.cache
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.sourcelink.json
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\appsettings.json
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\Store.API.staticwebassets.endpoints.json
@@ -155,13 +163,6 @@ C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\runtimes\win\lib\n
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Gulverda\Desktop\Final C#\Store.API\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.csproj.AssemblyReference.cache
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.AssemblyInfoInputs.cache
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.AssemblyInfo.cs
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.csproj.CoreCompileInputs.cache
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\scopedcss\bundle\Store.API.styles.css
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\staticwebassets.development.json
@@ -178,4 +179,4 @@ C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\refint\Store.API.d
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.pdb
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.genruntimeconfig.cache
 C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\ref\Store.API.dll
-C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\Store.API.sourcelink.json
+C:\Users\Gulverda\Desktop\Final C#\Store.API\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

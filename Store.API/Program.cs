@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Store.API.Data;
 using Store.API.Models;
 using Store.API.Services;
@@ -26,12 +26,27 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Ensure database is created and migrations are applied
+// Database migrations will be handled manually via 'dotnet ef database update'
+// Temporarily commented out to avoid conflicts during migration setup
+/*
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<StoreDbContext>();
-    dbContext.Database.EnsureCreated();
+    var services = scope.ServiceProvider;
+    try
+    {
+        var dbContext = services.GetRequiredService<StoreDbContext>();
+        dbContext.Database.Migrate();
+        Console.WriteLine("✅ Database and migrations applied successfully!");
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "❌ An error occurred applying migrations.");
+        Console.WriteLine($"❌ Error: {ex.Message}");
+        Console.WriteLine($"Inner Exception: {ex.InnerException?.Message}");
+    }
 }
+*/
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
